@@ -11,12 +11,16 @@ class UserServiceImpl implements UserService {
     private final UserRepository repository;
 
     @Override
-    public List<User> getAllUsers() {
-        return repository.findAll();
+    public List<UserDto> getAllUsers() {
+        List<User> users = repository.findAll();
+
+        return UserDtoMapper.userToUserDto(users);
     }
 
     @Override
-    public User saveUser(User user) {
-        return repository.save(user);
+    public UserDto saveUser(UserDto userDto) {
+        User user = repository.save(UserDtoMapper.userDtoToUser(userDto));
+
+        return UserDtoMapper.userToUserDto(user);
     }
 }

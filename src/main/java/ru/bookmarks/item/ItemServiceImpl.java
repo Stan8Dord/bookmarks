@@ -10,13 +10,15 @@ import java.util.List;
 public class ItemServiceImpl implements ItemService {
     private final ItemRepository repository;
     @Override
-    public List<Item> getItems(int userId) {
-        return repository.findByUserId(userId);
+    public List<ItemDto> getItems(int userId) {
+        List<Item> items = repository.findByUserId(userId);
+
+        return ItemDtoMapper.itemToItemDto(items);
     }
 
     @Override
-    public Item addNewItem(int userId, Item item) {
-        return repository.save(item);
+    public Item addNewItem(int userId, ItemDto itemDto) {
+        return repository.save(ItemDtoMapper.itemDtoToItem(itemDto, userId));
     }
 
     @Override

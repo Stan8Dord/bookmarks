@@ -12,13 +12,13 @@ public class ItemController {
     private final ItemService itemService;
 
     @GetMapping
-    public List<Item> get(@RequestHeader("X-Later-User-Id") int userId) {
+    public List<ItemDto> get(@RequestHeader("X-Later-User-Id") int userId) {
         return itemService.getItems(userId);
     }
 
     @PostMapping
     public Item add(@RequestHeader("X-Later-User-Id") int userId,
-                    @RequestBody Item item) {
+                    @RequestBody ItemDto item) {
         return itemService.addNewItem(userId, item);
     }
 

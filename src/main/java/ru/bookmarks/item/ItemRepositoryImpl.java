@@ -26,6 +26,6 @@ public class ItemRepositoryImpl implements ItemRepository {
 
     @Override
     public void deleteByUserIdAndItemId(int userId, long itemId) {
-        items.removeIf(item -> item.getUserId() == userId && item.getId() == itemId);
+        items.removeIf(item -> item.getUserId() == userId && item.getId().equals(itemId));
     }
 }
